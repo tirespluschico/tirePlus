@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -18,13 +19,14 @@ export default function Navbar() {
   return (
     <header className="bg-brand-dark/95 backdrop-blur-md text-white sticky top-0 z-50 shadow-lg border-b border-brand-red/25">
       <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3">
-          <span className="text-2xl font-black tracking-tight">
-            TIRES<span className="text-brand-red">+</span>
-          </span>
-          <span className="hidden sm:block text-xs text-brand-muted uppercase tracking-widest">
-            Complete Auto Service
-          </span>
+        <Link href="/" className="relative block h-12 w-[170px] sm:h-14 sm:w-[210px] md:h-16 md:w-[240px]">
+          <Image
+            src="/images/tireplus.png"
+            alt="Tires+ logo"
+            fill
+            priority
+            className="object-contain object-left"
+          />
         </Link>
 
         {/* Desktop nav */}

@@ -137,6 +137,8 @@ export default function HomePage() {
           <span className="hidden sm:block opacity-40">|</span>
           <span>Saturday: 9am – 1pm</span>
           <span className="hidden sm:block opacity-40">|</span>
+          <span>Sunday: Closed</span>
+          <span className="hidden sm:block opacity-40">|</span>
           <a href="tel:5303428338" className="underline hover:no-underline">530-342-8338</a>
         </div>
       </section>

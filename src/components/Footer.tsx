@@ -41,7 +41,7 @@ export default function Footer() {
                 tirespluschico@gmail.com
               </a>
             </li>
-            <li className="pt-1">Mon–Fri: 8am – 5pm &nbsp;|&nbsp; Sat: 9am – 1pm</li>
+            <li className="pt-1">Mon–Fri: 8am – 5pm &nbsp;|&nbsp; Sat: 9am – 1pm &nbsp;|&nbsp; Sun: Closed</li>
           </ul>
         </div>
       </div>
