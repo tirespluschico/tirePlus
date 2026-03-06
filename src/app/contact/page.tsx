@@ -73,8 +73,8 @@ export default function ContactPage() {
               <table className="text-sm text-brand-dark/75 w-full max-w-xs">
                 <tbody>
                   {[
-                    ["Monday – Friday", "8:00 AM – 6:00 PM"],
-                    ["Saturday", "9:00 AM – 4:00 PM"],
+                    ["Monday – Friday", "8:00 AM – 5:00 PM"],
+                    ["Saturday", "9:00 AM – 1:00 PM"],
                     ["Sunday", "Closed"],
                   ].map(([day, hours]) => (
                     <tr key={day} className="border-b border-brand-blue/15">

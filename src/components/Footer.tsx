@@ -19,6 +19,7 @@ export default function Footer() {
           <ul className="space-y-2 text-sm">
             <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
             <li><Link href="/services" className="hover:text-white transition-colors">Services</Link></li>
+            <li><Link href="/financing" className="hover:text-white transition-colors">Financing</Link></li>
             <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
           </ul>
         </div>
@@ -40,7 +41,7 @@ export default function Footer() {
                 tirespluschico@gmail.com
               </a>
             </li>
-            <li className="pt-1">Mon–Fri: 8am – 6pm &nbsp;|&nbsp; Sat: 9am – 4pm</li>
+            <li className="pt-1">Mon–Fri: 8am – 5pm &nbsp;|&nbsp; Sat: 9am – 1pm</li>
           </ul>
         </div>
       </div>

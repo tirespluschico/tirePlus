@@ -13,7 +13,8 @@ type FormState = {
 const services = [
   "Tire Installation", "Tire Rotation", "Flat Tire Repair", "Wheel Alignment",
   "Brake Service", "Oil Change", "Battery Replacement", "Tune Up",
-  "Timing Belt", "Struts & Shocks", "AC Service", "Other",
+  "Timing Belt", "Struts & Shocks", "AC Service", "Engine & Transmission Rebuilds",
+  "Lift Kits", "Lowering Kits", "Custom Work", "Other",
 ];
 
 const inputClass =

@@ -35,6 +35,10 @@ const services = [
   { icon: "⏱️", title: "Timing Belt", desc: "Timing belt inspection and replacement to protect your engine from costly damage." },
   { icon: "🚗", title: "Struts & Shocks", desc: "Worn struts or shocks affect handling and ride comfort. We diagnose and replace them fast." },
   { icon: "❄️", title: "AC Service", desc: "AC inspection, refrigerant recharge, and component repair to keep your cabin cool." },
+  { icon: "🛠️", title: "Engine & Transmission Rebuilds", desc: "Complete engine and transmission rebuild services for long-term reliability and performance." },
+  { icon: "⬆️", title: "Lift Kits", desc: "Professional lift kit installation to improve ground clearance, stance, and off-road capability." },
+  { icon: "⬇️", title: "Lowering Kits", desc: "Lowering kit installation for improved handling, ride profile, and custom street-ready style." },
+  { icon: "🎨", title: "Custom Work", desc: "Custom upgrades and specialty projects tailored to your goals and your vehicle." },
   { icon: "🔍", title: "Multi-Point Inspection", desc: "Full vehicle inspection — tires, brakes, fluids, lights, belts, and more." },
 ];
 
