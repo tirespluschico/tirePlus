@@ -5,7 +5,7 @@ import ContactForm from "@/components/ContactForm";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact Tires+ in Chico, CA for estimates and appointments. Call 530-342-8338, email tirespluschico@gmail.com, or visit 624 Broadway St, Chico, CA.",
+    "Contact Tires+ in Chico, CA for estimates and appointments. Call 530-342-8338, email contact@tirespluschico.com, or visit 624 Broadway St, Chico, CA.",
   alternates: {
     canonical: "/contact",
   },
@@ -59,10 +59,10 @@ export default function ContactPage() {
                 <li className="flex items-start gap-3">
                   <span className="text-brand-red text-lg mt-0.5">✉️</span>
                   <a
-                    href="mailto:tirespluschico@gmail.com"
+                    href="mailto:contact@tirespluschico.com"
                     className="hover:text-brand-red transition-colors font-bold text-brand-ink text-base break-all"
                   >
-                    tirespluschico@gmail.com
+                    contact@tirespluschico.com
                   </a>
                 </li>
               </ul>

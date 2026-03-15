@@ -35,10 +35,10 @@ export default function Footer() {
             </li>
             <li>
               <a
-                href="mailto:tirespluschico@gmail.com"
+                href="mailto:contact@tirespluschico.com"
                 className="hover:text-white transition-colors break-all"
               >
-                tirespluschico@gmail.com
+                contact@tirespluschico.com
               </a>
             </li>
             <li className="pt-1">Mon–Fri: 8am – 5pm &nbsp;|&nbsp; Sat: 9am – 1pm &nbsp;|&nbsp; Sun: Closed</li>
@@ -46,8 +46,12 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-white/10 text-center py-4 text-xs text-brand-muted/70">
-        &copy; {new Date().getFullYear()} Tires+ Complete Auto Service. All rights reserved.
+      <div className="border-t border-white/10 py-4 px-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-brand-muted/70">
+        <span>&copy; {new Date().getFullYear()} Tires+ Complete Auto Service. All rights reserved.</span>
+        <span className="flex gap-4">
+          <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+          <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
+        </span>
       </div>
     </footer>
   );
