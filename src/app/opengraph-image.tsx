@@ -70,6 +70,8 @@ export default async function Image() {
           {/* Headline */}
           <div
             style={{
+              display: "flex",
+              flexWrap: "wrap",
               fontSize: "52px",
               fontWeight: 900,
               color: "#ffffff",
@@ -91,13 +93,13 @@ export default async function Image() {
             style={{
               display: "flex",
               alignItems: "center",
+              alignSelf: "flex-start",
               background: "#cf2327",
               color: "#fff",
               borderRadius: "999px",
               padding: "12px 32px",
               fontSize: "20px",
               fontWeight: 700,
-              width: "fit-content",
               letterSpacing: "0.5px",
             }}
           >
