@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import HeroSlideshow from "@/components/HeroSlideshow";
+import ReviewsCarousel from "@/components/ReviewsCarousel";
 
 const highlights = [
   {
@@ -167,11 +168,15 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Photo strip */}
       <section className="py-8 sm:py-10">
-        <div className="max-w-3xl mx-auto px-2 sm:px-3">
-          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/15 bg-brand-dark shadow-xl">
-            <HeroSlideshow />
+        <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-6 lg:gap-8 items-stretch">
+          <div className="order-1">
+            <ReviewsCarousel />
+          </div>
+          <div className="order-2">
+            <div className="relative h-full min-h-[320px] overflow-hidden rounded-[2rem] border border-white/15 bg-brand-dark shadow-xl">
+              <HeroSlideshow />
+            </div>
           </div>
         </div>
       </section>

@@ -5,14 +5,14 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Financing",
   description:
-    "Apply for Acima leasing at Tires+ in Chico, CA. No credit needed — get approved fast for tires and auto repair.",
+    "Apply for Acima lease-to-own at Tires+ in Chico, CA. No credit needed and quick approval for tires and auto repair.",
   alternates: {
     canonical: "/financing",
   },
   openGraph: {
     title: "Financing | Tires+ Chico, CA",
     description:
-      "Apply for Acima leasing at Tires+ in Chico, CA. No credit needed — get approved fast.",
+      "Apply for Acima lease-to-own at Tires+ in Chico, CA. No credit needed and quick approval.",
     url: "/financing",
     images: [
       {
@@ -54,8 +54,8 @@ const benefits = [
   },
   {
     icon: "🔓",
-    title: "Pay Off Early",
-    desc: "Acima offers early payoff options so you can settle your balance ahead of schedule if you choose.",
+    title: "Early Purchase Option",
+    desc: "Acima offers early purchase options, including a 90-day option in many states and a 3-month option in California. Terms vary by agreement.",
   },
 ];
 
@@ -89,7 +89,7 @@ export default function FinancingPage() {
           <p className="text-brand-muted max-w-2xl text-lg leading-relaxed mb-8">
             Don&apos;t let the cost of new tires or a repair hold you back. We
             partner with&nbsp;<strong className="text-white">Acima Leasing</strong> to
-            offer fast, flexible leasing — no credit needed.
+            offer fast, flexible lease-to-own options with no credit needed.
           </p>
           <a
             href={ACIMA_URL}
@@ -116,6 +116,11 @@ export default function FinancingPage() {
             services you need today and pay over time. Instead of a traditional
             loan, Acima leases the items to you — giving you flexible payment
             options with no credit needed.
+          </p>
+          <p className="text-brand-dark/70 text-sm leading-7 max-w-2xl mx-auto mt-5">
+            Acima also offers early purchase options. In many states this includes
+            a 90-day early purchase option, and in California a 3-month purchase
+            option may apply. See your lease agreement for full terms.
           </p>
         </div>
       </section>
@@ -204,7 +209,9 @@ export default function FinancingPage() {
             </a>
           </div>
           <p className="text-brand-blue-light text-xs mt-6">
-            Leasing is provided by Acima. Subject to approval. See Acima&apos;s site for full terms and conditions.
+            Acima is a lease-to-own option, not a traditional loan. Subject to approval.
+            Early purchase options vary by state and agreement. See Acima&apos;s site for
+            full terms and conditions.
           </p>
         </div>
       </section>
