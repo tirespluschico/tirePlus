@@ -7,43 +7,55 @@ const reviews = [
     author: "Danyelle Fargo",
     meta: "5 reviews • 3 months ago",
     services: "Tires, General repairs & maintenance",
+    mobileBody:
+      "Stopped in for air and the team went far beyond that. They patched leaks, rotated the tires, and found a replacement.",
     body:
-      "Pulled in to get some air in my tires and the guys there were sweet and helpful and went way beyond just filling them. They patched leaking tires, rotated them, found a used tire for the bad one, and even tore off a dragging dust cover. I only stopped in because it was around the corner from work, and now I do not want to go anywhere else for tire-related needs.",
+      "I stopped in for air and the team went far beyond that. They patched leaking tires, rotated them, found a used replacement, and even fixed a dragging dust cover. I will not be going anywhere else for tire work.",
   },
   {
     author: "Victor Quintero",
     meta: "2 reviews • 1 photo • 3 years ago",
     services: "Painting, Tires, Wheel alignment",
+    mobileBody:
+      "JR and his team handled my lifted truck exactly right. Fast work, right tires, and great custom powder-coated wheels.",
     body:
-      "JR and his team took great care of the alignment, wheels, and tires on my lifted truck. They moved quickly, got the exact tires I wanted, and showed me custom powder-coated wheels that finished the truck perfectly. The quality of the powder coat and color stood out.",
+      "JR and his team handled the alignment, wheels, and tires on my lifted truck exactly right. They moved quickly, got the tires I wanted, and the custom powder-coated wheels finished the truck perfectly.",
   },
   {
     author: "Rebecca Riordan",
     meta: "Local Guide • 12 reviews • 1 year ago",
     services: "Tires",
+    mobileBody:
+      "They had all four AWD tires in stock, finished fast, and came in at about half of another shop's quote.",
     body:
-      "They greeted me immediately, had space in the garage right away, and got me set up with four new AWD tires for about half of another shop's quote. All four were in stock and installed in less than an hour. The staff felt welcoming, genuine, and never pushy.",
+      "They greeted me immediately, had all four AWD tires in stock, and finished in less than an hour. The price came in at about half of another shop's quote, and the staff felt welcoming and genuine the whole time.",
   },
   {
     author: "Stephen Metzger",
     meta: "2 reviews • 6 months ago",
     services: "Tires",
+    mobileBody:
+      "Kahlid, Junior, and crew are friendly, fair, prompt, and rooted in the community.",
     body:
-      "I had been coming to this shop for years and thought the new team would have huge shoes to fill. Kahlid, Junior, and crew did that and more. Personable, friendly, fair, prompt, and rooted in the community. I cannot recommend them highly enough.",
+      "Kahlid, Junior, and crew had huge shoes to fill and they did that and more. Personable, friendly, fair, prompt, and deeply rooted in the community. I cannot recommend them highly enough.",
   },
   {
     author: "Nate Steffen",
     meta: "4 reviews • 1 year ago",
     services: "Clutch repair, Suspension work",
+    mobileBody:
+      "This is the only place I take my car. Roy is professional, honest, and consistently reliable.",
     body:
-      "This is the only place I will take my car. Roy is worth his weight in gold, professional and honest every time. They replaced the clutch on my Subaru Outback and handled suspension work recently too. I cannot say enough good things about Roy and this shop.",
+      "This is the only place I will take my car. Roy is professional and honest every time. They replaced the clutch on my Subaru Outback and handled suspension work recently too.",
   },
   {
     author: "Randy Rick",
     meta: "3 reviews • 2 years ago",
     services: "Lift kits, Wheels, Tires",
+    mobileBody:
+      "My Jeep lift, wheels, and tires were handled with an honest, transparent process from start to finish.",
     body:
-      "I went to Tires Plus on a trusted recommendation and had my Jeep Wrangler Unlimited lifted with five new rims and tires. From consultation to installation, the experience was transparent, honest, and well executed. The owner and staff clearly care about matching customers with the right setup.",
+      "I had my Jeep Wrangler Unlimited lifted with five new rims and tires. From consultation to installation, the experience was transparent, honest, and well executed. The team clearly cares about matching customers with the right setup.",
   },
 ];
 
@@ -61,29 +73,29 @@ export default function ReviewsCarousel() {
   const activeReview = reviews[activeIndex];
 
   return (
-    <section className="relative h-full overflow-hidden rounded-[2rem] border border-white/12 bg-[linear-gradient(135deg,rgba(18,23,34,1)_0%,rgba(47,63,90,0.98)_52%,rgba(85,111,154,0.92)_100%)] shadow-2xl">
+    <section className="relative overflow-hidden rounded-[2rem] border border-white/12 bg-[linear-gradient(135deg,rgba(18,23,34,1)_0%,rgba(47,63,90,0.98)_52%,rgba(85,111,154,0.92)_100%)] shadow-2xl lg:h-full">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(207,35,39,0.28),transparent_38%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.08),transparent_28%)]" />
 
-      <div className="relative flex h-full flex-col gap-8 p-6 sm:p-8">
-        <div className="max-w-md">
+      <div className="relative flex flex-col gap-4 p-4 sm:p-7 lg:h-full lg:gap-5">
+        <div className="max-w-lg">
           <span className="text-brand-red text-xs font-bold uppercase tracking-[0.35em]">
             Customer Reviews
           </span>
-          <h2 className="mt-3 text-3xl font-black text-white sm:text-4xl">
+          <h2 className="mt-2 text-[1.45rem] font-black leading-tight text-white sm:text-4xl">
             Real feedback from local customers.
           </h2>
-          <p className="mt-4 text-base leading-7 text-brand-muted">
+          <p className="mt-3 hidden text-sm leading-6 text-brand-muted sm:block sm:text-base sm:leading-7 lg:max-w-xl">
             Real feedback from customers who came in for flats, full tire sets,
             lifted trucks, and major repair work.
           </p>
 
-          <div className="mt-8 flex gap-3">
+          <div className="mt-3 flex gap-2 sm:mt-6 sm:gap-3">
             <button
               type="button"
               onClick={() =>
                 setActiveIndex((current) => (current - 1 + reviews.length) % reviews.length)
               }
-              className="rounded-full border border-white/20 bg-white/8 px-5 py-3 text-sm font-bold uppercase tracking-[0.2em] text-white transition-colors hover:bg-white/16"
+              className="rounded-full border border-white/20 bg-white/8 px-3.5 py-2 text-[0.65rem] font-bold uppercase tracking-[0.16em] text-white transition-colors hover:bg-white/16 sm:px-5 sm:py-3 sm:text-sm sm:tracking-[0.2em]"
               aria-label="Show previous review"
             >
               Prev
@@ -91,7 +103,7 @@ export default function ReviewsCarousel() {
             <button
               type="button"
               onClick={() => setActiveIndex((current) => (current + 1) % reviews.length)}
-              className="rounded-full bg-brand-red px-5 py-3 text-sm font-bold uppercase tracking-[0.2em] text-white transition-colors hover:bg-brand-red-hover"
+              className="rounded-full bg-brand-red px-3.5 py-2 text-[0.65rem] font-bold uppercase tracking-[0.16em] text-white transition-colors hover:bg-brand-red-hover sm:px-5 sm:py-3 sm:text-sm sm:tracking-[0.2em]"
               aria-label="Show next review"
             >
               Next
@@ -99,32 +111,33 @@ export default function ReviewsCarousel() {
           </div>
         </div>
 
-        <div className="w-full flex-1 rounded-[1.75rem] border border-white/12 bg-white/9 p-1 backdrop-blur-sm">
-          <div className="rounded-[1.75rem] border border-white/8 bg-black/16 p-6 sm:p-8">
-            <div className="flex items-center justify-between gap-4">
+        <div className="w-full rounded-[1.75rem] border border-white/12 bg-white/9 p-1 backdrop-blur-sm lg:flex-1">
+          <div className="flex flex-col rounded-[1.75rem] border border-white/8 bg-black/16 p-4 sm:p-7 lg:h-full">
+            <div className="flex items-start justify-between gap-3">
               <div>
-                <p className="text-xl font-black text-white">{activeReview.author}</p>
-                <p className="mt-1 text-sm text-brand-muted">{activeReview.meta}</p>
+                <p className="text-base font-black text-white sm:text-xl">{activeReview.author}</p>
+                <p className="mt-1 text-xs text-brand-muted sm:text-sm">{activeReview.meta}</p>
               </div>
               <div className="text-right">
-                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-red">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red sm:text-sm">
                   Google
                 </p>
-                <p className="mt-1 text-base tracking-[0.25em] text-[#ffd166]">★★★★★</p>
+                <p className="mt-1 text-sm tracking-[0.22em] text-[#ffd166] sm:text-base sm:tracking-[0.25em]">★★★★★</p>
               </div>
             </div>
 
-            <p className="mt-8 text-lg leading-8 text-white/92 sm:text-[1.35rem] sm:leading-9">
-              “{activeReview.body}”
+            <p className="mt-3 text-[0.93rem] leading-5.5 text-white/92 sm:mt-6 sm:text-[1.08rem] sm:leading-7 lg:text-[1.02rem]">
+              <span className="sm:hidden">“{activeReview.mobileBody}”</span>
+              <span className="hidden sm:inline">“{activeReview.body}”</span>
             </p>
 
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <span className="rounded-full border border-brand-red/35 bg-brand-red/14 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-brand-red-soft">
+            <div className="mt-3 flex flex-wrap items-center gap-3 sm:mt-6">
+              <span className="rounded-full border border-brand-red/35 bg-brand-red/14 px-3 py-1.5 text-[0.6rem] font-bold uppercase tracking-[0.14em] text-brand-red-soft sm:px-4 sm:py-2 sm:text-xs sm:tracking-[0.2em]">
                 {activeReview.services}
               </span>
             </div>
 
-            <div className="mt-8 flex flex-wrap gap-2">
+            <div className="mt-4 flex flex-wrap gap-2 sm:mt-auto sm:pt-6">
               {reviews.map((review, index) => (
                 <button
                   key={review.author}
