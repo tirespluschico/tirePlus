@@ -169,12 +169,12 @@ export default function HomePage() {
       </section>
 
       <section className="py-8 sm:py-10">
-        <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-6 lg:gap-8 items-stretch">
-          <div className="order-1">
+        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-6 lg:gap-8 items-start lg:items-stretch lg:auto-rows-fr">
+          <div className="order-1 min-h-[50px] lg:min-h-[420px]">
             <ReviewsCarousel />
           </div>
-          <div className="order-2">
-            <div className="relative h-full min-h-[320px] overflow-hidden rounded-[2rem] border border-white/15 bg-brand-dark shadow-xl">
+          <div className="order-2 min-h-[50px] lg:min-h-[420px]">
+            <div className="relative aspect-[16/10] lg:h-full lg:aspect-auto overflow-hidden rounded-[2rem] border border-white/15 bg-brand-dark shadow-xl">
               <HeroSlideshow />
             </div>
           </div>
