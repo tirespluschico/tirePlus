@@ -82,7 +82,7 @@ export default function ReviewsCarousel() {
             Customer Reviews
           </span>
           <h2 className="mt-2 text-[1.45rem] font-black leading-tight text-white sm:text-4xl">
-            Real feedback from local customers.
+            Real feedback from Chico customers.
           </h2>
           <p className="mt-3 hidden text-sm leading-6 text-brand-muted sm:block sm:text-base sm:leading-7 lg:max-w-xl">
             Real feedback from customers who came in for flats, full tire sets,
