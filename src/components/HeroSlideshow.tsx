@@ -34,8 +34,9 @@ export default function HeroSlideshow() {
             alt="Tires+ shop exterior"
             fill
             priority={index === 0}
-            className="object-contain object-center px-5 sm:px-8 pt-2 sm:pt-3 pb-1 sm:pb-2"
+            className="object-cover object-center"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-brand-ink/35 via-transparent to-transparent" />
         </div>
       ))}
     </div>
