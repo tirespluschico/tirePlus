@@ -65,6 +65,27 @@ export default function ContactPage() {
                     contact@tirespluschico.com
                   </a>
                 </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-brand-red text-lg mt-0.5">📱</span>
+                  <div className="flex flex-wrap gap-x-4 gap-y-2 font-bold text-brand-ink text-base">
+                    <a
+                      href="https://www.instagram.com/tirespluschico_/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-brand-red transition-colors"
+                    >
+                      Instagram
+                    </a>
+                    <a
+                      href="https://www.facebook.com/profile.php?id=61578532622757"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-brand-red transition-colors"
+                    >
+                      Facebook
+                    </a>
+                  </div>
+                </li>
               </ul>
             </div>
 

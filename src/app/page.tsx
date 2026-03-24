@@ -34,6 +34,10 @@ const localBusinessSchema = {
   image: ["/images/tireplusfront.jpg"],
   telephone: "+1-530-342-8338",
   email: "contact@tirespluschico.com",
+  sameAs: [
+    "https://www.instagram.com/tirespluschico_/",
+    "https://www.facebook.com/profile.php?id=61578532622757",
+  ],
   address: {
     "@type": "PostalAddress",
     streetAddress: "624 Broadway St",
