@@ -30,6 +30,9 @@ const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "AutoRepair",
   name: "Tires+ Complete Auto Service",
+  alternateName: ["Tires Plus Chico", "Tires Plus Complete Auto Service"],
+  description:
+    "Best tire shop and mechanic shop in Chico, CA. Tire sales and installation, brakes, alignments, oil changes, car A/C repair, and full auto repair.",
   image: ["/images/tireplusfront.jpg"],
   telephone: "+1-530-342-8338",
   email: "tirespluschico@gmail.com",
@@ -59,21 +62,21 @@ const localBusinessSchema = {
 };
 
 export const metadata: Metadata = {
-  title: "Tire & Auto Repair",
+  title: "Best Tire Shop & Mechanic in Chico, CA",
   description:
-    "Tires+ in Chico, CA offers tire installation, flat repair, brakes, alignments, oil changes, and trusted auto repair. Call 530-342-8338.",
+    "Tires Plus (Tires+) in Chico, CA — one of the best tire shops and mechanic shops in town. Tire installation, brakes, alignments, oil changes, and car A/C repair. Call 530-342-8338.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Tires+ Chico, CA | Tire & Auto Repair Shop",
+    title: "Tires Plus Chico, CA | Best Tire Shop & Mechanic in Chico",
     description:
-      "Trusted local tire and auto repair in Chico, CA. Fast turnaround, honest pricing, and major tire brands.",
+      "Best tire shop and mechanic in Chico, CA. Fast turnaround, honest pricing, major tire brands, and car A/C repair.",
     url: "/",
     images: [
       {
         url: "/images/tireplusfront.jpg",
-        alt: "Tires+ shop exterior in Chico, CA",
+        alt: "Tires Plus shop exterior in Chico, CA",
       },
     ],
   },
@@ -106,9 +109,9 @@ export default function HomePage() {
             <span className="text-brand-red">Fast.</span>
           </h1>
           <p className="text-brand-muted text-lg max-w-lg leading-relaxed">
-            From simple tire replacement and wheel services to complete engine and transmission
-            work, we handle both tires and full mechanic repairs. Quality service at prices you
-            can trust. Call{" "}
+            One of the best tire shops and mechanic shops in Chico, CA. From tire replacement
+            and wheel services to brakes, alignments, car A/C repair, and complete engine and
+            transmission work — we handle it all. Quality service at prices you can trust. Call{" "}
             <a href="tel:5303428338" className="text-white font-semibold hover:text-brand-red transition-colors">
               530-342-8338
             </a>.
