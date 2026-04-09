@@ -3,16 +3,16 @@ import Image from "next/image";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Services",
+  title: "Tire Shop & Mechanic Services in Chico, CA",
   description:
-    "Auto repair and tire services in Chico, CA including tire installation, flat repair, alignments, brakes, oil changes, AC service, and more.",
+    "Best tire shop and mechanic services in Chico, CA — tire installation, flat repair, alignments, brakes, oil changes, car A/C repair, engine and transmission work, and more.",
   alternates: {
     canonical: "/services",
   },
   openGraph: {
-    title: "Auto Repair & Tire Services in Chico, CA",
+    title: "Tire Shop & Mechanic Services in Chico, CA | Tires Plus",
     description:
-      "Browse tire and auto repair services from Tires+ in Chico, CA, including brakes, alignments, oil changes, AC service, and more.",
+      "Browse tire and mechanic services from Tires Plus in Chico, CA, including brakes, alignments, oil changes, and car A/C repair.",
     url: "/services",
     images: [
       {
@@ -34,7 +34,7 @@ const services = [
   { icon: "🔩", title: "Tune Up", desc: "Spark plugs, filters, and ignition system check to restore performance and fuel economy." },
   { icon: "⏱️", title: "Timing Belt", desc: "Timing belt inspection and replacement to protect your engine from costly damage." },
   { icon: "🚗", title: "Struts & Shocks", desc: "Worn struts or shocks affect handling and ride comfort. We diagnose and replace them fast." },
-  { icon: "❄️", title: "AC Service", desc: "AC inspection, refrigerant recharge, and component repair to keep your cabin cool." },
+  { icon: "❄️", title: "Car A/C Repair", desc: "Car air conditioning inspection, refrigerant recharge, and component repair to keep your cabin cool." },
   { icon: "🛠️", title: "Engine & Transmission Rebuilds", desc: "Complete engine and transmission rebuild services for long-term reliability and performance." },
   { icon: "⬆️", title: "Lift Kits", desc: "Professional lift kit installation to improve ground clearance, stance, and off-road capability." },
   { icon: "⬇️", title: "Lowering Kits", desc: "Lowering kit installation for improved handling, ride profile, and custom street-ready style." },

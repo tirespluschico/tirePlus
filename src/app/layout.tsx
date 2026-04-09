@@ -16,19 +16,23 @@ const siteName = "Tires+ Complete Auto Service";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Tires+ Chico, CA | Tire & Auto Repair Shop",
-    template: "%s | Tires+ Chico, CA",
+    default: "Tires Plus Chico, CA | Best Tire Shop & Mechanic in Chico",
+    template: "%s | Tires Plus Chico, CA",
   },
   description:
-    "Tires+ Complete Auto Service in Chico, CA provides tire sales, tire repair, brakes, alignments, oil changes, and auto repair. Call 530-342-8338.",
+    "Tires Plus (Tires+) Complete Auto Service in Chico, CA — one of the best tire shops and mechanic shops in town. Tires, brakes, alignments, oil changes, car A/C repair, and full auto repair. Call 530-342-8338.",
   keywords: [
     "tire shop Chico CA",
+    "best tire shop Chico",
+    "best mechanic shop Chico",
     "auto repair Chico CA",
     "tire repair Chico",
     "brake service Chico",
     "wheel alignment Chico",
     "oil change Chico",
-    "Tires+ Chico",
+    "car AC repair Chico",
+    "car air conditioning repair Chico",
+    "Tires Plus Chico",
   ],
   applicationName: siteName,
   category: "Automotive",
@@ -51,9 +55,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "/",
     siteName,
-    title: "Tires+ Chico, CA | Tire & Auto Repair Shop",
+    title: "Tires Plus Chico, CA | Best Tire Shop & Mechanic in Chico",
     description:
-      "Local tire and auto repair in Chico, CA. Tires, flats, brakes, alignments, oil changes, and more. Call 530-342-8338.",
+      "One of the best tire shops and mechanic shops in Chico, CA. Tires, brakes, alignments, oil changes, and car A/C repair. Call 530-342-8338.",
     images: [
       {
         url: "/images/tireplusfront.jpg",
@@ -65,9 +69,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tires+ Chico, CA | Tire & Auto Repair Shop",
+    title: "Tires Plus Chico, CA | Best Tire Shop & Mechanic in Chico",
     description:
-      "Local tire and auto repair in Chico, CA. Call 530-342-8338 for service and estimates.",
+      "Best tire shop and mechanic in Chico, CA. Tires, brakes, alignments, car A/C repair. Call 530-342-8338.",
     images: ["/images/tireplusfront.jpg"],
   },
 };
