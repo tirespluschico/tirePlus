@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import HeroSlideshow from "@/components/HeroSlideshow";
+import ReviewsCarousel from "@/components/ReviewsCarousel";
 
 const highlights = [
   {
@@ -36,6 +37,10 @@ const localBusinessSchema = {
   image: ["/images/tireplusfront.jpg"],
   telephone: "+1-530-342-8338",
   email: "contact@tirespluschico.com",
+  sameAs: [
+    "https://www.instagram.com/tirespluschico_/",
+    "https://www.facebook.com/profile.php?id=61578532622757",
+  ],
   address: {
     "@type": "PostalAddress",
     streetAddress: "624 Broadway St",
@@ -170,11 +175,15 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Photo strip */}
       <section className="py-8 sm:py-10">
-        <div className="max-w-3xl mx-auto px-2 sm:px-3">
-          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/15 bg-brand-dark shadow-xl">
-            <HeroSlideshow />
+        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-6 lg:gap-8 items-start lg:items-stretch lg:auto-rows-fr">
+          <div className="order-1 min-h-[50px] lg:min-h-[420px]">
+            <ReviewsCarousel />
+          </div>
+          <div className="order-2 min-h-[50px] lg:min-h-[420px]">
+            <div className="relative aspect-[16/10] lg:h-full lg:aspect-auto overflow-hidden rounded-[2rem] border border-white/15 bg-brand-dark shadow-xl">
+              <HeroSlideshow />
+            </div>
           </div>
         </div>
       </section>

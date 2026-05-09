@@ -1,4 +1,5 @@
 import { Geist } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
 const geist = Geist({
@@ -15,6 +16,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geist.variable} antialiased`}>
         {children}
+        <Analytics />
       </body>
     </html>
   );

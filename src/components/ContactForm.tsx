@@ -20,29 +20,44 @@ const services = [
 const inputClass =
   "border border-brand-dark/20 rounded-xl px-3 py-2.5 text-sm text-brand-ink placeholder:text-brand-dark/50 focus:outline-none focus:ring-2 focus:ring-brand-blue/60 focus:border-transparent transition-colors bg-brand-panel/75";
 
+const EMPTY: FormState = { name: "", email: "", phone: "", service: "", message: "" };
+
 export default function ContactForm() {
-  const [form, setForm] = useState<FormState>({ name: "", email: "", phone: "", service: "", message: "" });
-  const [submitted, setSubmitted] = useState(false);
+  const [form, setForm] = useState<FormState>(EMPTY);
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    setSubmitted(true);
+    setStatus("sending");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (!res.ok) throw new Error("Server error");
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
   }
 
-  if (submitted) {
+  if (status === "success") {
     return (
       <div className="flex flex-col items-center justify-center gap-4 py-12 text-center rounded-2xl border border-brand-blue/15 bg-brand-panel/35">
         <span className="text-5xl">✅</span>
-        <h3 className="text-xl font-bold text-brand-ink">Message Received!</h3>
+        <h3 className="text-xl font-bold text-brand-ink">Message Sent!</h3>
         <p className="text-brand-dark/75 text-sm">
           Thanks, {form.name}! We&apos;ll be in touch within one business day.
         </p>
         <button
-          onClick={() => { setSubmitted(false); setForm({ name: "", email: "", phone: "", service: "", message: "" }); }}
+          onClick={() => { setStatus("idle"); setForm(EMPTY); }}
           className="text-brand-red text-sm font-semibold hover:underline mt-2"
         >
           Send another message
@@ -89,8 +104,19 @@ export default function ContactForm() {
         <textarea id="message" name="message" required rows={5} value={form.message} onChange={handleChange} placeholder="Tell us about your vehicle and what you need..." className={`${inputClass} resize-none`} />
       </div>
 
-      <button type="submit" className="bg-brand-red hover:bg-brand-red-hover transition-colors text-white font-bold py-3 rounded-full text-sm uppercase tracking-wide shadow">
-        Send Message
+      {status === "error" && (
+        <p className="text-sm text-brand-red font-medium text-center">
+          Something went wrong. Please try again or call us at{" "}
+          <a href="tel:5303428338" className="underline">530-342-8338</a>.
+        </p>
+      )}
+
+      <button
+        type="submit"
+        disabled={status === "sending"}
+        className="bg-brand-red hover:bg-brand-red-hover disabled:opacity-60 disabled:cursor-not-allowed transition-colors text-white font-bold py-3 rounded-full text-sm uppercase tracking-wide shadow"
+      >
+        {status === "sending" ? "Sending…" : "Send Message"}
       </button>
     </form>
   );

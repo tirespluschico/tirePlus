@@ -42,12 +42,34 @@ export default function Footer() {
               </a>
             </li>
             <li className="pt-1">Mon–Fri: 8:30am – 5pm &nbsp;|&nbsp; Sat: 9am – 1pm &nbsp;|&nbsp; Sun: Closed</li>
+            <li className="pt-2 flex flex-wrap gap-x-4 gap-y-2">
+              <a
+                href="https://www.instagram.com/tirespluschico_/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition-colors"
+              >
+                Instagram
+              </a>
+              <a
+                href="https://www.facebook.com/profile.php?id=61578532622757"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition-colors"
+              >
+                Facebook
+              </a>
+            </li>
           </ul>
         </div>
       </div>
 
-      <div className="border-t border-white/10 text-center py-4 text-xs text-brand-muted/70">
-        &copy; {new Date().getFullYear()} Tires+ Complete Auto Service. All rights reserved.
+      <div className="border-t border-white/10 py-4 px-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-brand-muted/70">
+        <span>&copy; {new Date().getFullYear()} Tires+ Complete Auto Service. All rights reserved.</span>
+        <span className="flex gap-4">
+          <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+          <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
+        </span>
       </div>
     </footer>
   );
