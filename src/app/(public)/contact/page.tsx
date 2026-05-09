@@ -5,7 +5,7 @@ import ContactForm from "@/components/ContactForm";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact Tires+ in Chico, CA for estimates and appointments. Call 530-342-8338, email tirespluschico@gmail.com, or visit 624 Broadway St, Chico, CA.",
+    "Contact Tires+ in Chico, CA for estimates and appointments. Call 530-342-8338, email contact@tirespluschico.com, or visit 624 Broadway St, Chico, CA.",
   alternates: {
     canonical: "/contact",
   },
@@ -59,10 +59,10 @@ export default function ContactPage() {
                 <li className="flex items-start gap-3">
                   <span className="text-brand-red text-lg mt-0.5">✉️</span>
                   <a
-                    href="mailto:tirespluschico@gmail.com"
+                    href="mailto:contact@tirespluschico.com"
                     className="hover:text-brand-red transition-colors font-bold text-brand-ink text-base break-all"
                   >
-                    tirespluschico@gmail.com
+                    contact@tirespluschico.com
                   </a>
                 </li>
               </ul>
@@ -73,7 +73,7 @@ export default function ContactPage() {
               <table className="text-sm text-brand-dark/75 w-full max-w-xs">
                 <tbody>
                   {[
-                    ["Monday – Friday", "8:00 AM – 5:00 PM"],
+                    ["Monday – Friday", "8:30 AM – 5:00 PM"],
                     ["Saturday", "9:00 AM – 1:00 PM"],
                     ["Sunday", "Closed"],
                   ].map(([day, hours]) => (

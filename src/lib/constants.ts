@@ -47,6 +47,6 @@ export const INSPECTION_PRESETS = [
 export const SHOP_INFO = {
   name: "Tires+ Complete Auto Service",
   phone: "530-342-8338",
-  email: "tirespluschico@gmail.com",
+  email: "contact@tirespluschico.com",
   address: "624 Broadway St, Chico, CA 95928",
 };

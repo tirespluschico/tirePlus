@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import Image from "next/image";
 import { SHOP_INFO } from "@/lib/constants";
 
 const inputClass =
@@ -12,34 +13,34 @@ export default function CustomerIntakePage() {
   const customerId = params.customerId as string;
 
   const [loading, setLoading] = useState(true);
-  const [notFound, setNotFound] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [saving, setSaving] = useState(false);
   const [form, setForm] = useState({
     name: "",
     phone: "",
     email: "",
-    address: "",
+    year: "",
+    make: "",
+    model: "",
+    plate: "",
+    description: "",
   });
 
   useEffect(() => {
     async function load() {
       try {
         const res = await fetch(`/api/intake/${customerId}`);
-        if (!res.ok) {
-          setNotFound(true);
-          setLoading(false);
-          return;
+        if (res.ok) {
+          const data = await res.json();
+          setForm((prev) => ({
+            ...prev,
+            name: data.name || "",
+            phone: data.phone || "",
+            email: data.email || "",
+          }));
         }
-        const data = await res.json();
-        setForm({
-          name: data.name === "New Customer" ? "" : data.name || "",
-          phone: data.phone || "",
-          email: data.email || "",
-          address: data.address || "",
-        });
       } catch {
-        setNotFound(true);
+        // ignore — form starts empty
       }
       setLoading(false);
     }
@@ -80,25 +81,6 @@ export default function CustomerIntakePage() {
     );
   }
 
-  if (notFound) {
-    return (
-      <div className="min-h-screen bg-brand-ink flex items-center justify-center p-6">
-        <div className="text-center max-w-md">
-          <div className="text-5xl mb-4">⚠️</div>
-          <h1 className="text-2xl font-bold text-white mb-2">
-            Link Not Valid
-          </h1>
-          <p className="text-brand-muted">
-            This intake link is no longer active. Please ask our team for help.
-          </p>
-          <div className="mt-8 text-brand-muted/50 text-xs">
-            {SHOP_INFO.name} · {SHOP_INFO.phone}
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   if (submitted) {
     return (
       <div className="min-h-screen bg-brand-ink flex items-center justify-center p-6">
@@ -111,30 +93,7 @@ export default function CustomerIntakePage() {
           <p className="text-brand-muted text-sm">
             We&apos;ll take a look at your vehicle and keep you updated.
           </p>
-
-          {/* Customer summary for admin */}
-          <div className="mt-8 bg-brand-dark rounded-2xl border border-white/10 p-5 text-left">
-            <p className="text-brand-muted text-xs uppercase tracking-wide mb-3">
-              Customer Info
-            </p>
-            <p className="text-white font-semibold">{form.name}</p>
-            <p className="text-brand-muted text-sm">{form.phone}</p>
-            {form.email && (
-              <p className="text-brand-muted text-sm">{form.email}</p>
-            )}
-            {form.address && (
-              <p className="text-brand-muted text-sm">{form.address}</p>
-            )}
-          </div>
-
-          <a
-            href={`/admin/jobs/new?customerId=${customerId}`}
-            className="inline-block mt-6 w-full bg-brand-red hover:bg-brand-red-hover text-white text-sm font-bold py-3 rounded-xl transition-colors"
-          >
-            Continue — Add Vehicle &amp; Services
-          </a>
-
-          <div className="mt-6 text-brand-muted/50 text-xs">
+          <div className="mt-8 text-brand-muted/50 text-xs">
             {SHOP_INFO.name} · {SHOP_INFO.phone}
           </div>
         </div>
@@ -144,10 +103,16 @@ export default function CustomerIntakePage() {
 
   return (
     <div className="min-h-screen bg-brand-ink">
-      {/* Header */}
-      <div className="bg-brand-dark/50 border-b border-white/10 px-6 py-5 text-center">
-        <h1 className="text-xl font-bold text-white">{SHOP_INFO.name}</h1>
-        <p className="text-brand-muted text-sm mt-1">
+      <div className="bg-brand-dark/50 border-b border-white/10 px-6 py-5 flex flex-col items-center text-center">
+        <Image
+          src="/images/tireplus.png"
+          alt="Tires+"
+          width={180}
+          height={48}
+          priority
+          className="object-contain h-12 w-auto mb-3"
+        />
+        <p className="text-brand-muted text-sm">
           Please fill out your information below
         </p>
       </div>
@@ -177,19 +142,63 @@ export default function CustomerIntakePage() {
             />
             <input
               type="email"
-              placeholder="Email (optional)"
+              placeholder="Email"
               value={form.email}
               onChange={(e) => update("email", e.target.value)}
               className={inputClass}
             />
+          </div>
+        </div>
+
+        <div className="mb-8">
+          <h2 className="text-sm font-semibold text-brand-muted uppercase tracking-wide mb-4">
+            Vehicle Information
+          </h2>
+          <div className="space-y-3">
+            <div className="grid grid-cols-3 gap-3">
+              <input
+                type="number"
+                placeholder="Year"
+                value={form.year}
+                onChange={(e) => update("year", e.target.value)}
+                className={inputClass}
+              />
+              <input
+                type="text"
+                placeholder="Make"
+                value={form.make}
+                onChange={(e) => update("make", e.target.value)}
+                className={inputClass}
+              />
+              <input
+                type="text"
+                placeholder="Model"
+                value={form.model}
+                onChange={(e) => update("model", e.target.value)}
+                className={inputClass}
+              />
+            </div>
             <input
               type="text"
-              placeholder="Address (optional)"
-              value={form.address}
-              onChange={(e) => update("address", e.target.value)}
+              placeholder="License Plate (optional)"
+              value={form.plate}
+              onChange={(e) => update("plate", e.target.value)}
               className={inputClass}
             />
           </div>
+        </div>
+
+        <div className="mb-8">
+          <h2 className="text-sm font-semibold text-brand-muted uppercase tracking-wide mb-4">
+            How Can We Help?
+          </h2>
+          <textarea
+            placeholder="Tell us what you need — e.g. new tires, brake noise, oil change..."
+            value={form.description}
+            onChange={(e) => update("description", e.target.value)}
+            rows={4}
+            className={inputClass}
+          />
         </div>
 
         <button

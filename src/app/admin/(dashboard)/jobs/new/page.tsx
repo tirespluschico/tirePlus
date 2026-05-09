@@ -9,6 +9,7 @@ interface CustomerResult {
   name: string;
   email: string | null;
   phone: string | null;
+  vehicles?: VehicleResult[];
 }
 
 interface VehicleResult {
@@ -48,7 +49,6 @@ function NewJobContent() {
     name: "",
     email: "",
     phone: "",
-    address: "",
   });
 
   // Vehicle state
@@ -221,7 +221,7 @@ function NewJobContent() {
 
   return (
     <div className="max-w-2xl">
-      <h1 className="text-2xl font-bold text-white mb-2">New Job</h1>
+      <h1 className="text-lg font-semibold text-white mb-3">New job</h1>
 
       {/* Step indicator */}
       <div className="flex gap-2 mb-8">
@@ -264,18 +264,40 @@ function NewJobContent() {
 
               {searchResults.length > 0 && (
                 <div className="mt-3 space-y-2">
-                  {searchResults.map((c) => (
-                    <button
-                      key={c.id}
-                      onClick={() => selectCustomer(c)}
-                      className="w-full text-left bg-brand-dark rounded-xl border border-white/10 p-4 hover:border-brand-red/30 transition-all"
-                    >
-                      <p className="text-white font-semibold">{c.name}</p>
-                      <p className="text-brand-muted text-sm">
-                        {[c.email, c.phone].filter(Boolean).join(" · ")}
-                      </p>
-                    </button>
-                  ))}
+                  {searchResults.map((c) => {
+                    const vehicleCount = c.vehicles?.length || 0;
+                    const vehicleSummary =
+                      vehicleCount === 0
+                        ? "No vehicles on file"
+                        : c
+                            .vehicles!.slice(0, 2)
+                            .map((v) =>
+                              `${v.year || ""} ${v.make} ${v.model}`.trim()
+                            )
+                            .join(", ") +
+                          (vehicleCount > 2 ? ` +${vehicleCount - 2} more` : "");
+
+                    return (
+                      <button
+                        key={c.id}
+                        onClick={() => selectCustomer(c)}
+                        className="w-full text-left border border-white/10 rounded p-3 hover:border-brand-red/40 hover:bg-white/5 transition-colors"
+                      >
+                        <div className="flex items-center justify-between gap-3">
+                          <p className="text-white font-medium">{c.name}</p>
+                          <span className="text-brand-muted text-xs whitespace-nowrap">
+                            {vehicleCount} vehicle{vehicleCount === 1 ? "" : "s"}
+                          </span>
+                        </div>
+                        <p className="text-brand-muted text-xs mt-0.5">
+                          {[c.email, c.phone].filter(Boolean).join(" · ") || "No contact info"}
+                        </p>
+                        <p className="text-brand-muted text-xs mt-0.5">
+                          {vehicleSummary}
+                        </p>
+                      </button>
+                    );
+                  })}
                 </div>
               )}
 
@@ -313,15 +335,6 @@ function NewJobContent() {
                 value={newCustomer.phone}
                 onChange={(e) =>
                   setNewCustomer({ ...newCustomer, phone: e.target.value })
-                }
-                className={inputClass}
-              />
-              <input
-                type="text"
-                placeholder="Address"
-                value={newCustomer.address}
-                onChange={(e) =>
-                  setNewCustomer({ ...newCustomer, address: e.target.value })
                 }
                 className={inputClass}
               />

@@ -35,7 +35,7 @@ const localBusinessSchema = {
     "Best tire shop and mechanic shop in Chico, CA. Tire sales and installation, brakes, alignments, oil changes, car A/C repair, and full auto repair.",
   image: ["/images/tireplusfront.jpg"],
   telephone: "+1-530-342-8338",
-  email: "tirespluschico@gmail.com",
+  email: "contact@tirespluschico.com",
   address: {
     "@type": "PostalAddress",
     streetAddress: "624 Broadway St",
@@ -49,7 +49,7 @@ const localBusinessSchema = {
     {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "08:00",
+      opens: "08:30",
       closes: "17:00",
     },
     {
@@ -136,7 +136,7 @@ export default function HomePage() {
       {/* Hours Banner */}
       <section className="bg-brand-blue text-white py-3 border-y border-white/10">
         <div className="max-w-6xl mx-auto px-4 flex flex-wrap items-center justify-center gap-x-8 gap-y-1 text-sm font-semibold text-center">
-          <span>Mon–Fri: 8am – 5pm</span>
+          <span>Mon–Fri: 8:30am – 5pm</span>
           <span className="hidden sm:block opacity-40">|</span>
           <span>Saturday: 9am – 1pm</span>
           <span className="hidden sm:block opacity-40">|</span>

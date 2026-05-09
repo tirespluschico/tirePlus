@@ -1,26 +1,36 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navItems = [
-  { href: "/admin", label: "Dashboard", icon: "��" },
-  { href: "/admin/jobs", label: "Jobs", icon: "🔧" },
-  { href: "/admin/customers", label: "Customers", icon: "👥" },
+  { href: "/admin", label: "Dashboard" },
+  { href: "/admin/jobs", label: "Jobs" },
+  { href: "/admin/customers", label: "Customers" },
 ];
 
 export default function AdminSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-64 bg-brand-dark min-h-screen border-r border-white/10 flex flex-col">
-      <div className="p-6 border-b border-white/10">
-        <Link href="/admin" className="text-white font-black text-xl tracking-tight">
-          Tires<span className="text-brand-red">+</span> Admin
+    <aside className="w-60 bg-brand-dark min-h-screen border-r border-white/10 flex flex-col">
+      <div className="px-5 py-6 border-b border-white/10">
+        <Link href="/admin" className="relative block h-10 w-[160px]">
+          <Image
+            src="/images/tireplus.png"
+            alt="Tires+"
+            fill
+            priority
+            className="object-contain object-left"
+          />
         </Link>
+        <p className="text-brand-muted text-[10px] uppercase tracking-[0.2em] mt-2">
+          Admin
+        </p>
       </div>
 
-      <nav className="flex-1 p-4 flex flex-col gap-1">
+      <nav className="flex-1 p-3 flex flex-col gap-0.5">
         {navItems.map((item) => {
           const isActive =
             item.href === "/admin"
@@ -31,26 +41,24 @@ export default function AdminSidebar() {
             <Link
               key={item.href}
               href={item.href}
-              className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
+              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                 isActive
-                  ? "bg-brand-blue/30 text-white"
+                  ? "bg-white/10 text-white"
                   : "text-brand-muted hover:text-white hover:bg-white/5"
               }`}
             >
-              <span>{item.icon}</span>
               {item.label}
             </Link>
           );
         })}
       </nav>
 
-      <div className="p-4 border-t border-white/10">
+      <div className="p-3 border-t border-white/10">
         <Link
           href="/"
-          className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm text-brand-muted hover:text-white hover:bg-white/5 transition-colors"
+          className="block px-3 py-2 rounded-md text-sm text-brand-muted hover:text-white hover:bg-white/5 transition-colors"
         >
-          <span>←</span>
-          Back to Site
+          ← Back to Site
         </Link>
       </div>
     </aside>

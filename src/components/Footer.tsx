@@ -35,13 +35,13 @@ export default function Footer() {
             </li>
             <li>
               <a
-                href="mailto:tirespluschico@gmail.com"
+                href="mailto:contact@tirespluschico.com"
                 className="hover:text-white transition-colors break-all"
               >
-                tirespluschico@gmail.com
+                contact@tirespluschico.com
               </a>
             </li>
-            <li className="pt-1">Mon–Fri: 8am – 5pm &nbsp;|&nbsp; Sat: 9am – 1pm &nbsp;|&nbsp; Sun: Closed</li>
+            <li className="pt-1">Mon–Fri: 8:30am – 5pm &nbsp;|&nbsp; Sat: 9am – 1pm &nbsp;|&nbsp; Sun: Closed</li>
           </ul>
         </div>
       </div>

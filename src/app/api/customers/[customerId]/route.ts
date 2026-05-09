@@ -54,3 +54,21 @@ export async function PATCH(
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
   return NextResponse.json(data);
 }
+
+export async function DELETE(
+  _req: NextRequest,
+  { params }: { params: Promise<{ customerId: string }> }
+) {
+  const session = await auth();
+  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+  const { customerId } = await params;
+
+  const { error } = await supabase
+    .from("customers")
+    .delete()
+    .eq("id", customerId);
+
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  return NextResponse.json({ success: true });
+}
