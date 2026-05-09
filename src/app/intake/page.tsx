@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { SHOP_INFO } from "@/lib/constants";
 
 const inputClass =
@@ -13,7 +14,6 @@ export default function IntakePage() {
     name: "",
     phone: "",
     email: "",
-    address: "",
     year: "",
     make: "",
     model: "",
@@ -46,7 +46,6 @@ export default function IntakePage() {
             name: "",
             phone: "",
             email: "",
-            address: "",
             year: "",
             make: "",
             model: "",
@@ -87,11 +86,16 @@ export default function IntakePage() {
   return (
     <div className="min-h-screen bg-brand-ink">
       {/* Header */}
-      <div className="bg-brand-dark/50 border-b border-white/10 px-6 py-5 text-center">
-        <h1 className="text-xl font-bold text-white">
-          {SHOP_INFO.name}
-        </h1>
-        <p className="text-brand-muted text-sm mt-1">
+      <div className="bg-brand-dark/50 border-b border-white/10 px-6 py-5 flex flex-col items-center text-center">
+        <Image
+          src="/images/tireplus.png"
+          alt="Tires+"
+          width={180}
+          height={48}
+          priority
+          className="object-contain h-12 w-auto mb-3"
+        />
+        <p className="text-brand-muted text-sm">
           Please fill out your information below
         </p>
       </div>
@@ -125,13 +129,6 @@ export default function IntakePage() {
               placeholder="Email (optional)"
               value={form.email}
               onChange={(e) => update("email", e.target.value)}
-              className={inputClass}
-            />
-            <input
-              type="text"
-              placeholder="Address (optional)"
-              value={form.address}
-              onChange={(e) => update("address", e.target.value)}
               className={inputClass}
             />
           </div>

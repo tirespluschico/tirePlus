@@ -74,27 +74,3 @@ export interface ShopUser {
   role: "owner" | "tech";
   created_at: string;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -6,38 +6,13 @@ import { randomUUID } from "crypto";
 // --------------- In-memory store ---------------
 
 const store: Record<string, Record<string, unknown>[]> = {
-  customers: [
-    { id: "c1", name: "Maria Garcia", email: "maria@email.com", phone: "530-555-0101", address: "123 Main St, Chico, CA", freshbooks_id: null, created_at: "2026-03-15T10:00:00Z" },
-    { id: "c2", name: "James Wilson", email: "jwilson@email.com", phone: "530-555-0202", address: "456 Oak Ave, Chico, CA", freshbooks_id: null, created_at: "2026-03-20T14:30:00Z" },
-    { id: "c3", name: "Sarah Chen", email: "sarah.chen@email.com", phone: "530-555-0303", address: "789 Elm Dr, Chico, CA", freshbooks_id: null, created_at: "2026-03-28T09:15:00Z" },
-  ],
-  vehicles: [
-    { id: "v1", customer_id: "c1", year: 2019, make: "Toyota", model: "Camry", plate: "7ABC123", created_at: "2026-03-15T10:00:00Z" },
-    { id: "v2", customer_id: "c2", year: 2021, make: "Ford", model: "F-150", plate: "8XYZ789", created_at: "2026-03-20T14:30:00Z" },
-    { id: "v3", customer_id: "c3", year: 2017, make: "Honda", model: "Civic", plate: "6DEF456", created_at: "2026-03-28T09:15:00Z" },
-    { id: "v4", customer_id: "c1", year: 2022, make: "Honda", model: "CR-V", plate: "9GHI012", created_at: "2026-03-18T11:00:00Z" },
-  ],
-  jobs: [
-    { id: "j1", vehicle_id: "v1", customer_id: "c1", status: "in_progress", services: ["Tire Rotation", "Brake Service"], notes: "Customer mentioned squeaking", notified_at: "2026-04-01T11:00:00Z", completed_at: null, review_sent_at: null, freshbooks_invoice_id: null, created_at: "2026-04-01T09:00:00Z" },
-    { id: "j2", vehicle_id: "v2", customer_id: "c2", status: "intake", services: ["Oil Change", "Multi-Point Inspection"], notes: null, notified_at: null, completed_at: null, review_sent_at: null, freshbooks_invoice_id: null, created_at: "2026-04-02T08:30:00Z" },
-    { id: "j3", vehicle_id: "v3", customer_id: "c3", status: "ready", services: ["Tire Installation", "Wheel Alignment"], notes: "4 new tires — Michelin Defender", notified_at: "2026-04-02T14:00:00Z", completed_at: "2026-04-02T16:00:00Z", review_sent_at: null, freshbooks_invoice_id: null, created_at: "2026-03-30T10:00:00Z" },
-  ],
-  inspection_items: [
-    { id: "ii1", job_id: "j1", name: "Front brake pads", status: "red", note: "3mm remaining — needs replacement", sort_order: 0, created_at: "2026-04-01T10:00:00Z" },
-    { id: "ii2", job_id: "j1", name: "Rear brake pads", status: "yellow", note: "5mm — ok for now, monitor", sort_order: 1, created_at: "2026-04-01T10:00:00Z" },
-    { id: "ii3", job_id: "j1", name: "Tire tread - LF", status: "green", note: null, sort_order: 2, created_at: "2026-04-01T10:00:00Z" },
-    { id: "ii4", job_id: "j1", name: "Tire tread - RF", status: "green", note: null, sort_order: 3, created_at: "2026-04-01T10:00:00Z" },
-    { id: "ii5", job_id: "j1", name: "Oil level", status: "yellow", note: "Slightly low", sort_order: 4, created_at: "2026-04-01T10:00:00Z" },
-    { id: "ii6", job_id: "j1", name: "Battery health", status: "green", note: null, sort_order: 5, created_at: "2026-04-01T10:00:00Z" },
-    { id: "ii7", job_id: "j3", name: "Tire tread - LF", status: "green", note: "New tire", sort_order: 0, created_at: "2026-04-02T13:00:00Z" },
-    { id: "ii8", job_id: "j3", name: "Tire tread - RF", status: "green", note: "New tire", sort_order: 1, created_at: "2026-04-02T13:00:00Z" },
-    { id: "ii9", job_id: "j3", name: "Tire tread - LR", status: "green", note: "New tire", sort_order: 2, created_at: "2026-04-02T13:00:00Z" },
-    { id: "ii10", job_id: "j3", name: "Tire tread - RR", status: "green", note: "New tire", sort_order: 3, created_at: "2026-04-02T13:00:00Z" },
-    { id: "ii11", job_id: "j3", name: "Alignment", status: "green", note: "Aligned to spec", sort_order: 4, created_at: "2026-04-02T13:00:00Z" },
-  ],
+  customers: [],
+  vehicles: [],
+  jobs: [],
+  inspection_items: [],
   notification_log: [],
   shop_users: [
-    { id: "su1", email: "tirespluschico@gmail.com", name: "Tires+ Owner", role: "owner", created_at: "2026-01-01T00:00:00Z" },
+    { id: "su1", email: "contact@tirespluschico.com", name: "Tires+ Owner", role: "owner", created_at: "2026-01-01T00:00:00Z" },
   ],
 };
 

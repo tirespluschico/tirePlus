@@ -1,13 +1,15 @@
 import Link from "next/link";
 import { supabase } from "@/lib/supabase/client";
 import { notFound } from "next/navigation";
+import type { JobStatus } from "@/lib/supabase/types";
+import AddVehicleForm from "@/components/admin/AddVehicleForm";
 
-const statusConfig: Record<string, { label: string; color: string; bg: string }> = {
-  intake: { label: "Intake", color: "text-blue-400", bg: "bg-blue-400/10" },
-  in_progress: { label: "In Progress", color: "text-yellow-400", bg: "bg-yellow-400/10" },
-  ready: { label: "Ready", color: "text-green-400", bg: "bg-green-400/10" },
-  completed: { label: "Completed", color: "text-emerald-400", bg: "bg-emerald-400/10" },
-  picked_up: { label: "Picked Up", color: "text-brand-muted", bg: "bg-brand-muted/10" },
+const statusConfig: Record<JobStatus, { label: string; dot: string; text: string }> = {
+  intake: { label: "Awaiting inspection", dot: "bg-amber-400", text: "text-amber-300" },
+  in_progress: { label: "In progress", dot: "bg-blue-400", text: "text-blue-300" },
+  ready: { label: "Ready", dot: "bg-green-500", text: "text-green-300" },
+  completed: { label: "Completed", dot: "bg-brand-muted", text: "text-brand-muted" },
+  picked_up: { label: "Picked up", dot: "bg-brand-muted", text: "text-brand-muted" },
 };
 
 export default async function CustomerDetailPage({
@@ -41,129 +43,141 @@ export default async function CustomerDetailPage({
   const allJobs = jobs || [];
 
   return (
-    <div className="max-w-3xl">
-      {/* Header */}
-      <div className="mb-6">
-        <Link
-          href="/admin/customers"
-          className="text-brand-muted text-xs hover:text-white transition-colors mb-2 inline-block"
-        >
-          ← Back to Customers
-        </Link>
-        <h1 className="text-2xl font-bold text-white">{customer.name}</h1>
-      </div>
+    <div>
+      <Link
+        href="/admin/customers"
+        className="text-brand-muted text-xs hover:text-white transition-colors mb-3 inline-block"
+      >
+        ← Back to customers
+      </Link>
 
-      {/* Contact info */}
-      <div className="bg-brand-dark rounded-2xl border border-white/10 p-5 mb-6">
-        <p className="text-brand-muted text-xs uppercase tracking-wide mb-3">
-          Contact Information
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {customer.email && (
-            <div>
-              <p className="text-brand-muted text-xs">Email</p>
-              <p className="text-white text-sm">{customer.email}</p>
-            </div>
-          )}
-          {customer.phone && (
-            <div>
-              <p className="text-brand-muted text-xs">Phone</p>
-              <p className="text-white text-sm">{customer.phone}</p>
-            </div>
-          )}
-          {customer.address && (
-            <div className="sm:col-span-2">
-              <p className="text-brand-muted text-xs">Address</p>
-              <p className="text-white text-sm">{customer.address}</p>
-            </div>
-          )}
+      <div className="flex items-center justify-between gap-4 mb-1">
+        <h1 className="text-xl font-semibold text-white">{customer.name}</h1>
+        <Link
+          href={`/admin/jobs/new?customerId=${customer.id}`}
+          className="bg-brand-red hover:bg-brand-red-hover text-white text-sm font-medium px-3 py-1.5 rounded transition-colors"
+        >
+          New job
+        </Link>
+      </div>
+      <p className="text-brand-muted text-sm mb-5">
+        Customer since {new Date(customer.created_at).toLocaleDateString()}
+      </p>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
+        <div className="border border-white/10 rounded p-3">
+          <p className="text-xs text-brand-muted mb-1">Email</p>
+          <p className="text-white text-sm">{customer.email || "—"}</p>
         </div>
-        <p className="text-brand-muted text-xs mt-4">
-          Customer since {new Date(customer.created_at).toLocaleDateString()}
-        </p>
+        <div className="border border-white/10 rounded p-3">
+          <p className="text-xs text-brand-muted mb-1">Phone</p>
+          <p className="text-white text-sm">{customer.phone || "—"}</p>
+        </div>
+        <div className="border border-white/10 rounded p-3">
+          <p className="text-xs text-brand-muted mb-1">Address</p>
+          <p className="text-white text-sm">{customer.address || "—"}</p>
+        </div>
       </div>
 
       {/* Vehicles */}
-      <div className="bg-brand-dark rounded-2xl border border-white/10 p-5 mb-6">
-        <p className="text-brand-muted text-xs uppercase tracking-wide mb-3">
-          Vehicles ({allVehicles.length})
-        </p>
+      <div className="mb-6">
+        <div className="flex items-center justify-between mb-2">
+          <h2 className="text-sm font-semibold text-white">
+            Vehicles ({allVehicles.length})
+          </h2>
+          <AddVehicleForm customerId={customer.id} />
+        </div>
         {allVehicles.length === 0 ? (
-          <p className="text-brand-muted text-sm">No vehicles on file.</p>
+          <div className="border border-white/10 rounded p-4 text-brand-muted text-sm">
+            No vehicles on file.
+          </div>
         ) : (
-          <div className="space-y-2">
-            {allVehicles.map((v) => (
-              <div
-                key={v.id}
-                className="flex items-center justify-between bg-white/5 rounded-xl px-4 py-3"
-              >
-                <span className="text-white text-sm font-medium">
-                  {v.year || ""} {v.make} {v.model}
-                </span>
-                {v.plate && (
-                  <span className="text-brand-muted text-xs">{v.plate}</span>
-                )}
-              </div>
-            ))}
+          <div className="overflow-x-auto border border-white/10 rounded">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-white/5 text-left text-xs text-brand-muted">
+                  <th className="px-4 py-2 font-medium">Vehicle</th>
+                  <th className="px-4 py-2 font-medium text-right">Plate</th>
+                </tr>
+              </thead>
+              <tbody>
+                {allVehicles.map((v) => (
+                  <tr key={v.id} className="border-t border-white/10">
+                    <td className="px-4 py-2.5 text-white">
+                      {v.year || ""} {v.make} {v.model}
+                    </td>
+                    <td className="px-4 py-2.5 text-brand-muted text-right">
+                      {v.plate || "—"}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         )}
       </div>
 
       {/* Job history */}
-      <div className="bg-brand-dark rounded-2xl border border-white/10 p-5">
-        <div className="flex items-center justify-between mb-3">
-          <p className="text-brand-muted text-xs uppercase tracking-wide">
-            Job History ({allJobs.length})
-          </p>
-          <Link
-            href="/admin/jobs/new"
-            className="text-brand-blue-light text-xs hover:text-white transition-colors"
-          >
-            + New Job
-          </Link>
-        </div>
+      <div>
+        <h2 className="text-sm font-semibold text-white mb-2">
+          Job history ({allJobs.length})
+        </h2>
         {allJobs.length === 0 ? (
-          <p className="text-brand-muted text-sm">No jobs yet.</p>
+          <div className="border border-white/10 rounded p-4 text-brand-muted text-sm">
+            No jobs yet.
+          </div>
         ) : (
-          <div className="space-y-2">
-            {allJobs.map((job) => {
-              const config = statusConfig[job.status] || statusConfig.intake;
-              const vehicle = job.vehicle;
-              return (
-                <Link
-                  key={job.id}
-                  href={`/admin/jobs/${job.id}`}
-                  className="flex items-center justify-between bg-white/5 rounded-xl px-4 py-3 hover:bg-white/10 transition-colors"
-                >
-                  <div>
-                    <p className="text-white text-sm font-medium">
-                      {vehicle
-                        ? `${vehicle.year || ""} ${vehicle.make} ${vehicle.model}`
-                        : "No vehicle"}
-                    </p>
-                    {job.services && job.services.length > 0 && (
-                      <p className="text-brand-muted text-xs mt-0.5">
-                        {job.services.slice(0, 3).join(", ")}
-                        {job.services.length > 3 && ` +${job.services.length - 3} more`}
-                      </p>
-                    )}
-                  </div>
-                  <div className="text-right">
-                    <span
-                      className={`text-xs font-semibold px-2 py-1 rounded-full ${config.bg} ${config.color}`}
+          <div className="overflow-x-auto border border-white/10 rounded">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-white/5 text-left text-xs text-brand-muted">
+                  <th className="px-4 py-2 font-medium">Vehicle</th>
+                  <th className="px-4 py-2 font-medium">Services</th>
+                  <th className="px-4 py-2 font-medium">Status</th>
+                  <th className="px-4 py-2 font-medium text-right">Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {allJobs.map((job) => {
+                  const config =
+                    statusConfig[job.status as JobStatus] || statusConfig.intake;
+                  const services = (job.services as string[]) || [];
+                  return (
+                    <tr
+                      key={job.id}
+                      className="border-t border-white/10 hover:bg-white/5 transition-colors"
                     >
-                      {config.label}
-                    </span>
-                    <p className="text-brand-muted text-xs mt-1">
-                      {new Date(job.created_at).toLocaleDateString()}
-                    </p>
-                  </div>
-                </Link>
-              );
-            })}
+                      <td className="px-4 py-2.5">
+                        <Link
+                          href={`/admin/jobs/${job.id}`}
+                          className="text-white hover:text-brand-red"
+                        >
+                          {job.vehicle
+                            ? `${job.vehicle.year || ""} ${job.vehicle.make} ${job.vehicle.model}`
+                            : "No vehicle"}
+                        </Link>
+                      </td>
+                      <td className="px-4 py-2.5 text-brand-muted max-w-xs truncate">
+                        {services.length > 0 ? services.join(", ") : "—"}
+                      </td>
+                      <td className="px-4 py-2.5">
+                        <span className={`inline-flex items-center gap-1.5 ${config.text}`}>
+                          <span className={`w-1.5 h-1.5 rounded-full ${config.dot}`} />
+                          {config.label}
+                        </span>
+                      </td>
+                      <td className="px-4 py-2.5 text-brand-muted text-right whitespace-nowrap">
+                        {new Date(job.created_at).toLocaleDateString()}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
           </div>
         )}
       </div>
+
     </div>
   );
 }

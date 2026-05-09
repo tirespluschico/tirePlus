@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { supabase } from "@/lib/supabase/client";
+import { logJobEvent } from "@/lib/jobEvents";
 
 export async function GET(
   _req: NextRequest,
@@ -59,6 +60,12 @@ export async function PUT(
     .select("*")
     .eq("job_id", jobId)
     .order("sort_order", { ascending: true });
+
+  await logJobEvent(
+    jobId,
+    "inspection",
+    `Inspection saved (${items.length} items)`
+  );
 
   return NextResponse.json(data);
 }

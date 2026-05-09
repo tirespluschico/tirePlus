@@ -8,16 +8,12 @@ export default function StartIntakeButton({ className }: { className?: string })
   async function handleClick() {
     setLoading(true);
     try {
-      const res = await fetch("/api/customers", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: "New Customer" }),
-      });
+      const res = await fetch("/api/intake/start", { method: "POST" });
       const data = await res.json();
-      if (res.ok && data.id) {
-        window.location.href = `/intake/${data.id}`;
+      if (res.ok && data.customerId) {
+        window.open(`/intake/${data.customerId}`, "_blank");
       }
-    } catch {
+    } finally {
       setLoading(false);
     }
   }
@@ -26,9 +22,9 @@ export default function StartIntakeButton({ className }: { className?: string })
     <button
       onClick={handleClick}
       disabled={loading}
-      className={`bg-brand-blue hover:bg-brand-blue-light disabled:opacity-50 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors ${className || ""}`}
+      className={`bg-transparent border border-white/15 hover:border-white/30 hover:bg-white/5 disabled:opacity-50 text-white text-sm font-medium px-3 py-1.5 rounded transition-colors ${className || ""}`}
     >
-      {loading ? "Setting up..." : "Customer Intake"}
+      {loading ? "Starting…" : "Customer intake"}
     </button>
   );
 }

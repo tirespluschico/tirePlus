@@ -18,13 +18,27 @@ const nextAuth = DEV_MODE
         async signIn({ user }) {
           if (!user.email) return false;
 
-          const { data } = await supabase
+          // Already in the allowlist?
+          const { data: existing } = await supabase
             .from("shop_users")
             .select("id")
             .eq("email", user.email)
-            .single();
+            .maybeSingle();
 
-          return !!data;
+          if (existing) return true;
+
+          // Bootstrap: if this email matches OWNER_EMAIL, auto-add as owner
+          const ownerEmail = process.env.OWNER_EMAIL?.toLowerCase().trim();
+          if (ownerEmail && user.email.toLowerCase() === ownerEmail) {
+            await supabase.from("shop_users").insert({
+              email: user.email,
+              name: user.name || null,
+              role: "owner",
+            });
+            return true;
+          }
+
+          return false;
         },
         async session({ session }) {
           if (session.user?.email) {
@@ -32,7 +46,7 @@ const nextAuth = DEV_MODE
               .from("shop_users")
               .select("role")
               .eq("email", session.user.email)
-              .single();
+              .maybeSingle();
 
             if (data) {
               (session.user as unknown as Record<string, unknown>).role =

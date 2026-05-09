@@ -1,6 +1,9 @@
+"use client";
+
 import type { InspectionStatus } from "@/lib/supabase/types";
 
 interface InspectionItem {
+  id?: string;
   name: string;
   status: InspectionStatus;
   note: string | null;
@@ -8,6 +11,7 @@ interface InspectionItem {
 
 interface InspectionViewProps {
   items: InspectionItem[];
+  onDelete?: (itemId: string) => void;
 }
 
 const sections: {
@@ -48,7 +52,7 @@ const sections: {
   },
 ];
 
-export default function InspectionView({ items }: InspectionViewProps) {
+export default function InspectionView({ items, onDelete }: InspectionViewProps) {
   if (items.length === 0) {
     return (
       <p className="text-brand-muted text-sm">No inspection items recorded.</p>
@@ -71,11 +75,11 @@ export default function InspectionView({ items }: InspectionViewProps) {
             </h4>
             <div className="space-y-2">
               {sectionItems.map((item, i) => (
-                <div key={i} className="flex items-start gap-2">
+                <div key={item.id || i} className="flex items-start gap-2 group">
                   <div
                     className={`w-2 h-2 rounded-full ${section.dot} mt-1.5 shrink-0`}
                   />
-                  <div>
+                  <div className="flex-1 min-w-0">
                     <p className="text-white text-sm">{item.name}</p>
                     {item.note && (
                       <p className="text-brand-muted text-xs mt-0.5">
@@ -83,6 +87,20 @@ export default function InspectionView({ items }: InspectionViewProps) {
                       </p>
                     )}
                   </div>
+                  {onDelete && item.id && (
+                    <button
+                      onClick={() => {
+                        if (confirm(`Remove "${item.name}" from inspection?`)) {
+                          onDelete(item.id!);
+                        }
+                      }}
+                      className="opacity-0 group-hover:opacity-100 text-brand-muted hover:text-red-400 text-base leading-none transition-opacity shrink-0"
+                      aria-label="Remove"
+                      title="Remove item"
+                    >
+                      ×
+                    </button>
+                  )}
                 </div>
               ))}
             </div>

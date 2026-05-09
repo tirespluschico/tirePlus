@@ -10,7 +10,7 @@ export async function GET(req: NextRequest) {
 
   let query = supabase
     .from("customers")
-    .select("*")
+    .select("*, vehicles(id, year, make, model, plate)")
     .order("created_at", { ascending: false });
 
   if (q) {
