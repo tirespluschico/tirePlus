@@ -41,7 +41,7 @@ export default function Footer() {
                 contact@tirespluschico.com
               </a>
             </li>
-            <li className="pt-1">Mon–Fri: 8am – 5pm &nbsp;|&nbsp; Sat: 9am – 1pm &nbsp;|&nbsp; Sun: Closed</li>
+            <li className="pt-1">Mon–Fri: 8:30am – 5pm &nbsp;|&nbsp; Sat: 9am – 1pm &nbsp;|&nbsp; Sun: Closed</li>
             <li className="pt-2 flex flex-wrap gap-x-4 gap-y-2">
               <a
                 href="https://www.instagram.com/tirespluschico_/"
