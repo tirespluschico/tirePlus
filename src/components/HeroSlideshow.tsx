@@ -4,9 +4,18 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const slides = [
+  // Storefront
+  "/images/tireplusfront.jpg",
+  // Inside
+  "/images/entranceshot.jpg",
+  "/images/lobby.jpg",
+  "/images/lobby2.jpg",
+  "/images/helpdesk.jpg",
+  "/images/hallway.jpg",
+  "/images/tireroom.jpg",
+  // Lot and side of the building
   "/images/frontshot.jpg",
   "/images/sidebuilding.jpg",
-  "/images/tireplusfront.jpg",
 ];
 
 export default function HeroSlideshow() {

@@ -19,6 +19,12 @@ export default function Footer() {
           <ul className="space-y-2 text-sm">
             <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
             <li><Link href="/services" className="hover:text-white transition-colors">Services</Link></li>
+            <li>
+              <Link href="/services/adas" className="hover:text-white transition-colors inline-flex items-center gap-2">
+                ADAS Calibration
+                <span className="h-1.5 w-1.5 rounded-full bg-brand-red" />
+              </Link>
+            </li>
             <li><Link href="/financing" className="hover:text-white transition-colors">Financing</Link></li>
             <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
           </ul>
