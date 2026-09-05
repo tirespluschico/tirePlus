@@ -5,9 +5,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
-const links = [
+const links: { href: string; label: string; isNew?: boolean }[] = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
+  { href: "/services/adas", label: "ADAS", isNew: true },
   { href: "/financing", label: "Financing" },
   { href: "/contact", label: "Contact" },
 ];
@@ -30,16 +31,19 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-8">
-          {links.map(({ href, label }) => (
+        <nav className="hidden md:flex items-center gap-7">
+          {links.map(({ href, label, isNew }) => (
             <Link
               key={href}
               href={href}
-              className={`text-sm font-semibold uppercase tracking-wide transition-colors hover:text-white ${
+              className={`relative text-sm font-semibold uppercase tracking-wide transition-colors hover:text-white ${
                 pathname === href ? "text-white" : "text-brand-muted"
               }`}
             >
               {label}
+              {isNew && (
+                <span className="absolute -top-1 -right-2.5 h-1.5 w-1.5 rounded-full bg-brand-red" />
+              )}
             </Link>
           ))}
           <Link
@@ -68,16 +72,21 @@ export default function Navbar() {
 
       {menuOpen && (
         <div className="md:hidden bg-brand-blue border-t border-white/10 px-4 pb-4">
-          {links.map(({ href, label }) => (
+          {links.map(({ href, label, isNew }) => (
             <Link
               key={href}
               href={href}
               onClick={() => setMenuOpen(false)}
-              className={`block py-3 text-sm font-semibold uppercase tracking-wide border-b border-white/10 transition-colors hover:text-white ${
+              className={`flex items-center gap-2 py-3 text-sm font-semibold uppercase tracking-wide border-b border-white/10 transition-colors hover:text-white ${
                 pathname === href ? "text-white" : "text-brand-muted"
               }`}
             >
               {label}
+              {isNew && (
+                <span className="bg-brand-red text-white text-[9px] font-black uppercase tracking-[0.15em] px-2 py-0.5 rounded-full">
+                  New
+                </span>
+              )}
             </Link>
           ))}
           <Link

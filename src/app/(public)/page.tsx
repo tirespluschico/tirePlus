@@ -3,6 +3,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import HeroSlideshow from "@/components/HeroSlideshow";
 import ReviewsCarousel from "@/components/ReviewsCarousel";
+import AdasPopup from "@/components/AdasPopup";
 
 const highlights = [
   {
@@ -25,6 +26,23 @@ const highlights = [
     title: "Honest Pricing",
     desc: "Free estimates, no hidden fees. You approve before we work.",
   },
+];
+
+const adasTriggers = [
+  "Wheel alignment",
+  "Windshield replacement",
+  "Suspension or steering work",
+  "Any collision repair",
+  "New tires that change ride height",
+];
+
+const adasSystems = [
+  "Automatic emergency braking",
+  "Lane keep assist",
+  "Blind spot monitoring",
+  "Adaptive cruise control",
+  "Backup & surround cameras",
+  "Parking sensors",
 ];
 
 const localBusinessSchema = {
@@ -90,6 +108,7 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
+      <AdasPopup />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
@@ -171,6 +190,111 @@ export default function HomePage() {
                 <p className="text-brand-muted text-sm leading-relaxed">{desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ADAS Calibration */}
+      <section className="relative overflow-hidden bg-brand-ink py-20 sm:py-24">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -top-40 -right-32 h-[34rem] w-[34rem] rounded-full bg-brand-red/25 blur-3xl"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -bottom-48 -left-40 h-[30rem] w-[30rem] rounded-full bg-brand-blue/30 blur-3xl"
+        />
+
+        <div className="relative max-w-6xl mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-16 items-start">
+            {/* Left: the pitch */}
+            <div className="flex flex-col items-start gap-6">
+              <span className="inline-flex items-center gap-2 bg-brand-red text-white text-[11px] font-black uppercase tracking-[0.2em] px-4 py-1.5 rounded-full shadow-lg shadow-brand-red/30">
+                <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" />
+                New in Chico
+              </span>
+
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black leading-[1.12] text-white">
+                An alignment or a new windshield can throw off{" "}
+                <span className="text-brand-red">your car&apos;s safety cameras.</span>
+              </h2>
+
+              <p className="text-brand-muted text-lg leading-relaxed max-w-xl">
+                Lane keep, blind spot warning, and automatic braking all run on cameras and radar
+                sensors. When those sensors get knocked out of aim, they don&apos;t shut off — they
+                keep working off the wrong picture, usually without a warning light. Most shops send
+                you to a dealership to get them recalibrated.{" "}
+                <strong className="text-white font-semibold">We&apos;re one of the few shops in Chico that does it in-house.</strong>
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full max-w-xl">
+                {[
+                  { big: "1 visit", small: "Done with your alignment" },
+                  { big: "No dealer", small: "Skip the markup and the wait" },
+                  { big: "On paper", small: "Documented to OEM spec" },
+                ].map(({ big, small }) => (
+                  <div
+                    key={big}
+                    className="rounded-xl border border-white/10 bg-white/[0.04] px-4 py-4"
+                  >
+                    <div className="text-white font-black text-xl">{big}</div>
+                    <div className="text-brand-muted text-xs leading-snug mt-1">{small}</div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex flex-wrap gap-4 mt-2">
+                <Link
+                  href="/services/adas"
+                  className="bg-brand-red hover:bg-brand-red-hover transition-colors text-white font-bold px-8 py-3 rounded-full text-sm uppercase tracking-wide shadow-lg"
+                >
+                  See How It Works
+                </Link>
+                <a
+                  href="tel:5303428338"
+                  className="bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 transition-colors text-white font-bold px-8 py-3 rounded-full text-sm uppercase tracking-wide"
+                >
+                  Call 530-342-8338
+                </a>
+              </div>
+            </div>
+
+            {/* Right: the specifics */}
+            <div className="w-full flex flex-col gap-5">
+              <div className="rounded-2xl border border-brand-red/30 bg-brand-dark/60 p-6">
+                <h3 className="text-white font-black text-sm uppercase tracking-widest mb-4">
+                  You need it after
+                </h3>
+                <ul className="flex flex-col gap-3">
+                  {adasTriggers.map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-brand-muted text-sm">
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-red" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-brand-dark/40 p-6">
+                <h3 className="text-white font-black text-sm uppercase tracking-widest mb-4">
+                  Systems we calibrate
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {adasSystems.map((item) => (
+                    <span
+                      key={item}
+                      className="rounded-full border border-white/15 bg-white/[0.06] px-3 py-1.5 text-brand-muted text-xs font-medium"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+                <p className="text-brand-muted/70 text-xs leading-relaxed mt-5">
+                  Not sure if your vehicle has these? Give us a call with your year, make, and
+                  model — we&apos;ll tell you straight.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

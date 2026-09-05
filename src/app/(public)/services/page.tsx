@@ -23,7 +23,14 @@ export const metadata: Metadata = {
   },
 };
 
-const services = [
+const services: {
+  icon: string;
+  title: string;
+  desc: string;
+  href?: string;
+  isNew?: boolean;
+}[] = [
+  { icon: "🎯", title: "ADAS Calibration", desc: "Lane keep, blind spot, adaptive cruise, and automatic braking sensors recalibrated in-house after an alignment, windshield, or collision repair.", href: "/services/adas", isNew: true },
   { icon: "🛞", title: "Tire Installation", desc: "We mount and balance tires for all vehicle types. We carry Michelin, General Tire, and all major brands." },
   { icon: "🔄", title: "Tire Rotation", desc: "Extend the life of your tires with regular rotation following manufacturer recommendations." },
   { icon: "🩹", title: "Flat Tire Repair", desc: "Puncture repair for repairable tires. Quick service to get you back on the road safely." },
@@ -61,16 +68,42 @@ export default function ServicesPage() {
       {/* Grid */}
       <section className="py-16 bg-brand-blue/18 border-y border-brand-blue/20">
         <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-          {services.map(({ icon, title, desc }) => (
-            <div
-              key={title}
-              className="bg-brand-surface/80 rounded-2xl border border-brand-dark/20 hover:shadow-xl hover:border-brand-red/30 transition-all p-6 flex flex-col gap-3"
-            >
-              <span className="text-3xl">{icon}</span>
-              <h3 className="font-bold text-lg text-brand-ink">{title}</h3>
-              <p className="text-brand-dark/75 text-sm leading-relaxed flex-1">{desc}</p>
-            </div>
-          ))}
+          {services.map(({ icon, title, desc, href, isNew }) => {
+            const cardClass = `bg-brand-surface/80 rounded-2xl border transition-all p-6 flex flex-col gap-3 ${
+              href
+                ? "border-brand-red/40 hover:shadow-xl hover:border-brand-red"
+                : "border-brand-dark/20 hover:shadow-xl hover:border-brand-red/30"
+            }`;
+            const body = (
+              <>
+                <div className="flex items-start justify-between gap-2">
+                  <span className="text-3xl">{icon}</span>
+                  {isNew && (
+                    <span className="bg-brand-red text-white text-[9px] font-black uppercase tracking-[0.15em] px-2 py-1 rounded-full">
+                      New
+                    </span>
+                  )}
+                </div>
+                <h3 className="font-bold text-lg text-brand-ink">{title}</h3>
+                <p className="text-brand-dark/75 text-sm leading-relaxed flex-1">{desc}</p>
+                {href && (
+                  <span className="text-brand-red font-bold text-sm inline-flex items-center gap-1.5">
+                    Learn more <span aria-hidden>&rarr;</span>
+                  </span>
+                )}
+              </>
+            );
+
+            return href ? (
+              <Link key={title} href={href} className={cardClass}>
+                {body}
+              </Link>
+            ) : (
+              <div key={title} className={cardClass}>
+                {body}
+              </div>
+            );
+          })}
         </div>
       </section>
 
